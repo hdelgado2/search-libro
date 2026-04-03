@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Footer = () => {
+  const [year, setYear] = useState(new Date().getFullYear())
+
   return (
     <>
        <footer className="w-full mt-auto bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
@@ -10,7 +12,7 @@ const Footer = () => {
           Busca tu Libro Favorito
         </span>
         <p className="font-inter text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
-          © 2024 The Literary Curator. An Editorial Digital Library.
+          © {year} Busca tu Libro Favorito.  Una Biblioteca Digital Editorial.
         </p>
       </div>
      
