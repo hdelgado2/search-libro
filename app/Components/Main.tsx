@@ -1,8 +1,12 @@
 import React from 'react'
 import Error from './Error'
+import Loading from './Loading'
 
-const Main = ({Libros}: {Libros: any[]}) => {
+const Main = ({Libros, Carga}: {Libros: any[], Carga: boolean}) => {
   
+  if(Carga) return <Loading/>
+
+
   if(Libros.length === 0)
     return <Error/>
   

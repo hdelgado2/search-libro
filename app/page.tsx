@@ -8,14 +8,20 @@ import ENDPOINT from "./Endpoint";
 export default function Home() {
   const [Search, setSearch] = useState("")
   const [Libros, setLibros] = useState([])
+  const [carga, setCarga] = useState(false)
 
-
-  const getBooks = async () => {
-    setLibros([])
-    const response = await fetch(`${ENDPOINT}?q=${Search}`)
-    const data = await response.json()
-    const {docs} = data
-    setLibros(docs)
+  const getBooks = async (e: any) => {
+    
+    
+    if(e.key === "Enter" || e.type === "click"){
+     setCarga(true) 
+      setLibros([])
+      const response = await fetch(`${ENDPOINT}?q=${Search}`)
+      const data = await response.json()
+      const {docs} = data
+      setLibros(docs)
+      setCarga(false)
+    }
   
   }
   return (
@@ -23,7 +29,7 @@ export default function Home() {
       <Header setSearch={setSearch} search={Search} getBooks={getBooks}/>
       <div className="flex max-w-screen-2xl mx-auto">
 
-        <Main Libros={Libros}/>
+        <Main Libros={Libros} Carga={carga}/>
       </div>
       {/* Footer */}
       <Footer />

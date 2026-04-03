@@ -217,7 +217,7 @@
 }
 
 @theme {
-  /* Colores */
+  /* Colores - Todos deben tener prefijo -- */
   --color-on-secondary: #ffffff;
   --color-on-primary: #ffffff;
   --color-primary-container: #1e3a8a;
@@ -291,14 +291,25 @@ body {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         
-        h1, h2, h3, .brand-font { font-family: 'Manrope', sans-serif; }
-        .glass-nav {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .editorial-shadow {
-            box-shadow: 0 32px 48px -4px rgba(26, 27, 33, 0.06);
-        }
-        .book-bleed {
-            transform: translateY(-1.5rem) translateX(1rem);
-        }
+h1, h2, h3, .brand-font { font-family: 'Manrope', sans-serif; }
+.glass-nav {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.editorial-shadow {
+    box-shadow: 0 32px 48px -4px rgba(26, 27, 33, 0.06);
+}
+.book-bleed {
+    transform: translateY(-1.5rem) translateX(1rem);
+}
+
+
+ @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    .shimmer {
+      background: linear-gradient(to right, #eeedf4 8%, #e3e1e9 18%, #eeedf4 33%);
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite linear;
+    }

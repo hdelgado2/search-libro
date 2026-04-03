@@ -21,9 +21,10 @@ const Header = ({ setSearch, search, getBooks }: { setSearch: (search: string) =
                 type="text"
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
+                onKeyDown={getBooks}
               />
 
-              <button onClick={getBooks} className="material-symbols-outlined absolute right-4 text-slate-400 group-focus-within:text-primary transition-colors">
+              <button  onClick={getBooks} className="material-symbols-outlined absolute right-4 text-slate-400 group-focus-within:text-primary transition-colors">
                 search
               </button>
             </div>
