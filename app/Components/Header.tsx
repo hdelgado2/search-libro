@@ -1,6 +1,6 @@
 
 
-const Header = ({ setSearch, search, getBooks }: { setSearch: (search: string) => void, search: string, getBooks: () => void }) => {
+const Header = ({ setSearch, search, getBooks }: { setSearch: (search: string) => void, search: string, getBooks: (e: any) => void }) => {
 
   return (
     <>

@@ -7,7 +7,7 @@ import ENDPOINT from "./Endpoint";
 
 export default function Home() {
   const [Search, setSearch] = useState("")
-  const [Libros, setLibros] = useState([])
+  const [Libros, setLibros] = useState<any[]>([])
   const [carga, setCarga] = useState(false)
 
   const getBooks = async (e: any) => {
