@@ -12,7 +12,7 @@ const Footer = () => {
           Busca tu Libro Favorito
         </span>
         <p className="font-inter text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
-          © {year} Busca tu Libro Favorito.  Una Biblioteca Digital Editorial.
+          © {year} Busca tu Libro Favorito.  Una Biblioteca Digital Editorial creado por Hendrix Delgado.
         </p>
       </div>
      
