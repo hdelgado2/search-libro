@@ -2,12 +2,15 @@ import React from 'react'
 import Error from './Error'
 import Loading from './Loading'
 
+
+
+
 const Main = ({Libros, Carga}: {Libros: any[], Carga: boolean}) => {
   
   if(Carga) return <Loading/>
 
 
-  if(Libros.length === 0)
+  if(Libros?.length === 0)
     return <Error/>
   
   
@@ -30,7 +33,7 @@ const Main = ({Libros, Carga}: {Libros: any[], Carga: boolean}) => {
       {/* Book Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
         {/* Book Card 1 */}
-        {Libros.map(({key, title, author_name, first_publish_year,  cover_i}) => (
+        {Libros?.map(({key, title, author_name, first_publish_year,  cover_i}) => (
           <div key={key} className="group relative flex flex-col bg-surface-container-lowest rounded-xl p-6 editorial-shadow transition-all duration-300 hover:-translate-y-1">
           <div className="relative -mt-12 mb-6 h-72 w-full rounded-lg overflow-hidden shadow-2xl transition-transform group-hover:scale-[1.02]">
             <img
