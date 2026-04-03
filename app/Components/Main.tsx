@@ -1,7 +1,14 @@
 import React from 'react'
+import Error from './Error'
 
 const Main = ({Libros}: {Libros: any[]}) => {
+  
+  if(Libros.length === 0)
+    return <Error/>
+  
+  
   return (
+
     <>
         <main className="flex-1 bg-surface-container-low min-h-screen px-16 py-12">
       <header className="mb-16 space-y-4">
