@@ -266,6 +266,68 @@
   --color-on-tertiary-fixed-variant: #653e00;
   --color-on-error: #ffffff;
 
+  /* Colores */
+  --on-error-container: #93000a;
+  --tertiary: #3e2400;
+  --secondary-container: #d0d8ff;
+  --on-tertiary-container: #ef9900;
+  --surface-tint: #4059aa;
+  --error-container: #ffdad6;
+  --tertiary-fixed: #ffddb8;
+  --inverse-surface: #2f3036;
+  --error: #ba1a1a;
+  --surface-container-low: #f4f3fa;
+  --primary-fixed-dim: #b6c4ff;
+  --on-secondary: #ffffff;
+  --primary-container: #1e3a8a;
+  --surface-container: #eeedf4;
+  --secondary-fixed: #dce1ff;
+  --on-tertiary-fixed-variant: #653e00;
+  --on-primary-fixed-variant: #264191;
+  --on-secondary-fixed-variant: #3d4565;
+  --on-primary: #ffffff;
+  --on-secondary-fixed: #111a37;
+  --on-secondary-container: #555e7f;
+  --surface-container-lowest: #ffffff;
+  --surface-bright: #faf8ff;
+  --outline: #757682;
+  --primary-fixed: #dce1ff;
+  --on-error: #ffffff;
+  --inverse-on-surface: #f1f0f7;
+  --background: #faf8ff;
+  --on-tertiary-fixed: #2a1700;
+  --on-primary-container: #90a8ff;
+  --inverse-primary: #b6c4ff;
+  --secondary: #555d7e;
+  --on-background: #1a1b21;
+  --surface-dim: #dad9e1;
+  --on-tertiary: #ffffff;
+  --secondary-fixed-dim: #bdc5eb;
+  --outline-variant: #c5c5d3;
+  --surface-container-highest: #e3e1e9;
+  --primary: #00236f;
+  --tertiary-container: #5c3800;
+  --surface-container-high: #e9e7ef;
+  --on-surface: #1a1b21;
+  --on-surface-variant: #444651;
+  --surface-variant: #e3e1e9;
+  --surface: #faf8ff;
+  --on-primary-fixed: #00164e;
+  --tertiary-fixed-dim: #ffb95f;
+
+  /* Bordes */
+  --radius-default: 0.25rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* Fuentes */
+  --font-headline: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-label: "Inter", system-ui, -apple-system, sans-serif;
+
+  
+
   /* Fuentes */
   --font-headline: "Manrope";
   --font-body: "Inter";
