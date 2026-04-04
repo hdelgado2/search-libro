@@ -17,17 +17,17 @@ const Main = ({Libros, Carga}: {Libros: any[], Carga: boolean}) => {
   return (
 
     <>
-        <main className="flex-1 bg-surface-container-low min-h-screen px-16 py-12">
-      <header className="mb-16 space-y-4">
+        <main className="flex-1 bg-surface-container-low min-h-screen px-6 md:px-16 py-8 md:py-12">
+      <header className="mb-12 md:mb-16 space-y-4">
         <div className="flex items-center gap-4">
           <span className="px-3 py-1 bg-tertiary-fixed-dim text-on-tertiary-fixed text-[10px] font-bold uppercase tracking-widest rounded-full">
             Editorial Selection
           </span>
           <div className="h-px flex-1 bg-outline-variant/30" />
         </div>
-        <h1 className="text-5xl font-extrabold text-on-surface tracking-tight leading-tight max-w-2xl">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-tight max-w-2xl">
           Buscas tu Libro Favorito 
-          <span className="text-primary italic">Encontralo Aqui</span>.
+          <br className="md:hidden"/> <span className="text-primary italic">Encontralo Aqui</span>.
         </h1>
       </header>
       {/* Book Grid */}
