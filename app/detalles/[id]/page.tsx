@@ -1,12 +1,22 @@
+"use server"
 import Main from '@/app/Components/Main'
 import Header from '@/app/Components/Header'
 import Footer from '@/app/Components/Footer'
 import Link from 'next/link'
+import { ENDPOINT_DETAILS } from '@/app/Endpoint'
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params
   const title = decodeURIComponent(id).split('/')
-  console.log(title)
+  
+  
+
+    const getDetails = async () => {
+      const response = await fetch(`${ENDPOINT_DETAILS}${title[2]}.json`)
+      const data = await response.json()
+      console.log(data)
+    }
+    getDetails()
 
   return (
     <>

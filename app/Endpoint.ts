@@ -1,3 +1,6 @@
 const ENDPOINT = "https://openlibrary.org/search.json"
 
-export default ENDPOINT
+const ENDPOINT_DETAILS = "https://openlibrary.org/authors/"
+
+export default ENDPOINT 
+export { ENDPOINT_DETAILS }
