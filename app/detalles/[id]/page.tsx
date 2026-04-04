@@ -5,7 +5,8 @@ import Link from 'next/link'
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params
-  const title = decodeURIComponent(id)
+  const title = decodeURIComponent(id).split('/')
+  console.log(title)
 
   return (
     <>
@@ -17,7 +18,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             Volver al Inicio
           </Link>
           
-          <main className="pt-32 pb-24 px-16 max-w-screen-2xl mx-auto">
+  <main className="pt-32 pb-24 px-16 max-w-screen-2xl mx-auto">
   {/* Hero Section: Editorial Asymmetry */}
   <section className="grid grid-cols-12 gap-16 items-center mb-32">
     <div className="col-span-5 relative group">
@@ -26,7 +27,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           alt="La Arquitectura del Silencio"
           className="w-full h-full object-cover"
           data-alt="Elegant minimalist book cover featuring abstract white architectural planes with deep shadows and refined typography on high-quality textured paper"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvarCLRg0IwW0vn5q5cI1o9yBU97ymnh2h7CWFeb3IrxwH5OXHXeXB8g4N2oEHM5LB3JtduQ7DPaS7YXmokn-5RuuyazdckGZclS1cDt5lBFhD-ZTru75iwgXGkFdRHhUqRNnJfy-Q3GpjnZ53zhW-u8b3bVcy1fsAOFVYr8Fw5dfoKgSR1QqS-10qN4utFypIDMbFEyQcwcio8k0o9kQ4r-bOaGki-2FJhkYJPUC9Ox1cmL3M2caeBDaEnJ0UF1HTtfbo4BSXYEI"
+          src={`https://covers.openlibrary.org/b/id/${title[2]}-M.jpg`}
         />
       </div>
       {/* Decorative element following Asymmetry Rule */}
@@ -39,10 +40,10 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             New Acquisition
           </span>
           <h1 className="text-7xl font-extrabold tracking-tighter text-primary leading-tight">
-            La Arquitectura del Silencio
+            {title[0]}
           </h1>
           <p className="text-2xl text-on-surface-variant font-medium">
-            Elena Valdivia
+            {title[1]}
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -78,13 +79,13 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   </section>
   <div className="grid grid-cols-12 gap-20">
     {/* Main Content: Synopsis & Author */}
-    <div className="col-span-8 space-y-24">
+    <div className="col-span-12 space-y-24">
       {/* Synopsis */}
       <section>
         <h2 className="text-3xl font-bold tracking-tight text-primary mb-8">
           Synopsis
         </h2>
-        <div className="space-y-6 text-lg leading-relaxed text-on-surface-variant max-w-[70ch]">
+        <div className="space-y-6 text-lg leading-relaxed text-on-surface-variant">
           <p>
             In <em className="italic">La Arquitectura del Silencio</em>, Elena
             Valdivia explores the philosophical intersection between the built
@@ -148,86 +149,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </section>
     </div>
     {/* Sidebar: Details & Curator's Note */}
-    <aside className="col-span-4 space-y-12">
-      {/* Curator's Note */}
-      <div className="relative bg-tertiary-container rounded-xl p-10 overflow-hidden">
-        {/* Glassmorphism accent */}
-        <div className="absolute top-0 right-0 p-4 opacity-10">
-          <span
-            className="material-symbols-outlined text-8xl"
-            data-icon="format_quote"
-          >
-            format_quote
-          </span>
-        </div>
-        <h3 className="text-tertiary-fixed font-headline font-bold text-xl mb-6 flex items-center gap-2">
-          <span className="material-symbols-outlined" data-icon="verified">
-            verified
-          </span>
-          Curator's Note
-        </h3>
-        <blockquote className="text-2xl font-headline font-semibold text-white italic leading-snug mb-8">
-          "The most profound book on design I've read this decade."
-        </blockquote>
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full overflow-hidden">
-            <img
-              alt="Julian Vance"
-              className="w-full h-full object-cover"
-              data-alt="Portrait of a distinguished man with graying hair, wearing a navy blazer, scholarly appearance, warm soft lighting"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8ohv03CrWd7tombZyISLMXeapSR9IetpLlh-K3EmXqDs4CAoekJQ0xi4-DCzNVkWgvxYm6EiIZZi5kRxSmyDP6Stc3AbhcaYS5v7t0_ujqAXwSXQExuIQ-Qsepxj27iItjJqULDyqmQAairV7Fl-mGQGvmkerGyV9z9PV3VbUcMC58YslMGiusZwnJh_kyKRuuPHJvagXsO3w9_pO1hjCi8zHwGLeWYfxen8AbqJH5JWn__D5vvbyTjHaiR3itYwk76_whgCpGIs"
-            />
-          </div>
-          <div>
-            <p className="text-white font-bold leading-tight">Julian Vance</p>
-            <p className="text-tertiary-fixed-dim text-sm">Senior Curator</p>
-          </div>
-        </div>
-      </div>
-      {/* Edition Details */}
-      <div className="bg-surface-container-lowest rounded-xl p-10 space-y-8">
-        <h3 className="text-primary font-headline font-bold text-xl">
-          Edition Details
-        </h3>
-        <div className="space-y-6">
-          <div className="flex justify-between items-end border-b border-outline-variant/20 pb-4">
-            <span className="text-on-surface-variant text-sm font-medium">
-              Publisher
-            </span>
-            <span className="text-on-surface font-bold">Lumina Press</span>
-          </div>
-          <div className="flex justify-between items-end border-b border-outline-variant/20 pb-4">
-            <span className="text-on-surface-variant text-sm font-medium">
-              ISBN
-            </span>
-            <span className="text-on-surface font-bold">978-3-16-148410-0</span>
-          </div>
-          <div className="flex justify-between items-end border-b border-outline-variant/20 pb-4">
-            <span className="text-on-surface-variant text-sm font-medium">
-              Format
-            </span>
-            <span className="text-on-surface font-bold">Hardcover</span>
-          </div>
-          <div className="flex justify-between items-end border-b border-outline-variant/20 pb-4">
-            <span className="text-on-surface-variant text-sm font-medium">
-              Published
-            </span>
-            <span className="text-on-surface font-bold">October 2023</span>
-          </div>
-          <div className="flex justify-between items-end">
-            <span className="text-on-surface-variant text-sm font-medium">
-              Language
-            </span>
-            <span className="text-on-surface font-bold">
-              Spanish (English Edition)
-            </span>
-          </div>
-        </div>
-        <button className="w-full py-4 rounded-lg bg-surface-container-highest text-primary font-bold hover:bg-surface-container-high transition-colors">
-          Request Institutional Access
-        </button>
-      </div>
-    </aside>
+
   </div>
 </main>
 

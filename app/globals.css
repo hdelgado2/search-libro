@@ -1,4 +1,10 @@
 @import "tailwindcss";
+
+
+
+
+
+
 /* cyrillic-ext */
 @font-face {
   font-family: 'Manrope';
@@ -199,6 +205,8 @@
   font-weight: 100 700;
   src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v322/kJEPBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzBwG-RpA6RzaxHMPdY40KH8nGzv3fzfVJO1Q.woff2) format('woff2');
 }
+
+
 
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
