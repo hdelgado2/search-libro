@@ -104,23 +104,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             </>
           )}
         </div>
-        <div className="flex items-center gap-6 pt-4">
-          <button className="px-10 py-4 bg-primary text-on-primary rounded-lg font-headline font-bold text-lg hover:shadow-xl hover:shadow-primary/20 transition-all flex items-center gap-2">
-            <span className="material-symbols-outlined" data-icon="menu_book">
-              menu_book
-            </span>
-            Read Now
-          </button>
-          <button className="px-10 py-4 bg-secondary-container text-on-secondary-container rounded-lg font-headline font-bold text-lg hover:bg-secondary-container/80 transition-all flex items-center gap-2">
-            <span
-              className="material-symbols-outlined"
-              data-icon="bookmark_add"
-            >
-              bookmark_add
-            </span>
-            Save to Library
-          </button>
-        </div>
+
       </div>
     </div>
   </section>
