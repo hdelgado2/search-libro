@@ -1,22 +1,51 @@
-"use server"
 import Main from '@/app/Components/Main'
 import Header from '@/app/Components/Header'
 import Footer from '@/app/Components/Footer'
 import Link from 'next/link'
 import { ENDPOINT_DETAILS } from '@/app/Endpoint'
 
+
+
+interface BookData {
+  description?: string;
+  // ... otros campos
+}
+
+
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params
-  const title = decodeURIComponent(id).split('/')
+  const decodedId = decodeURIComponent(id)
+  const [bookTitle, authorName, coverId, key] = decodedId.split('@@')
   
+  let description = "Estamos buscando el resumen de este libro para tí..."
+  let subjects: string[] = []
+
+  if (key) {
+    try {
+      const response = await fetch(`${ENDPOINT_DETAILS}${key}.json`)
+      if (response.ok) {
+        const data = await response.json()
+        
+        if (data.description) {
+          description = typeof data.description === 'string' 
+            ? data.description 
+            : data.description.value
+        } else {
+          description = "No hay una descripción disponible para este libro en este momento."
+        }
+        
+        if (data.subjects) {
+          subjects = data.subjects.slice(0, 5)
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching book details:", error)
+      description = "No pudimos cargar la descripción del libro."
+    }
+  }
   
 
-    const getDetails = async () => {
-      const response = await fetch(`${ENDPOINT_DETAILS}${title[2]}.json`)
-      const data = await response.json()
-      console.log(data)
-    }
-    getDetails()
+
 
   return (
     <>
@@ -37,7 +66,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           alt="La Arquitectura del Silencio"
           className="w-full h-full object-cover"
           data-alt="Elegant minimalist book cover featuring abstract white architectural planes with deep shadows and refined typography on high-quality textured paper"
-          src={`https://covers.openlibrary.org/b/id/${title[2]}-M.jpg`}
+          src={`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`}
         />
       </div>
       {/* Decorative element following Asymmetry Rule */}
@@ -49,23 +78,31 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <span className="text-tertiary-fixed-variant font-label text-sm font-semibold tracking-widest uppercase">
             New Acquisition
           </span>
-          <h1 className="text-7xl font-extrabold tracking-tighter text-primary leading-tight">
-            {title[0]}
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-primary leading-tight">
+            {bookTitle}
           </h1>
-          <p className="text-2xl text-on-surface-variant font-medium">
-            {title[1]}
+          
+          <p className="text-xl md:text-2xl text-on-surface-variant font-medium">
+            {authorName}
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <span className="px-4 py-1.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant text-sm font-medium">
-            Minimalism
-          </span>
-          <span className="px-4 py-1.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant text-sm font-medium">
-            Architecture
-          </span>
-          <span className="px-4 py-1.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant text-sm font-medium">
-            Essay
-          </span>
+          {subjects.length > 0 ? (
+            subjects.map((subject, index) => (
+              <span key={index} className="px-4 py-1.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant text-xs font-medium uppercase tracking-wider">
+                {subject}
+              </span>
+            ))
+          ) : (
+            <>
+              <span className="px-4 py-1.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant text-sm font-medium">
+                Literary
+              </span>
+              <span className="px-4 py-1.5 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed-variant text-sm font-medium">
+                General
+              </span>
+            </>
+          )}
         </div>
         <div className="flex items-center gap-6 pt-4">
           <button className="px-10 py-4 bg-primary text-on-primary rounded-lg font-headline font-bold text-lg hover:shadow-xl hover:shadow-primary/20 transition-all flex items-center gap-2">
@@ -96,67 +133,12 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           Synopsis
         </h2>
         <div className="space-y-6 text-lg leading-relaxed text-on-surface-variant">
-          <p>
-            In <em className="italic">La Arquitectura del Silencio</em>, Elena
-            Valdivia explores the philosophical intersection between the built
-            environment and the human psyche. She argues that in an increasingly
-            cacophonous world, the most essential function of modern
-            architecture is not to provide shelter, but to curate silence.
-          </p>
-          <p>
-            Through a series of evocative essays, Valdivia traverses the
-            globe—from the austere monasteries of the Spanish plateau to the
-            subterranean meditation chambers of contemporary Tokyo. She dissects
-            how light, material, and negative space can be orchestrated to
-            create "pockets of stillness" that allow for profound introspection
-            and cognitive restoration.
-          </p>
-          <p>
-            This is not merely a technical manual on minimalism; it is a
-            manifesto for a slower, more intentional way of existing within our
-            spaces. Valdivia challenges the reader to look beyond the aesthetic
-            of the void and recognize the structural necessity of quietude in
-            our daily lives.
-          </p>
+          {description.split('\n\n').map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
         </div>
       </section>
-      {/* Author Spotlight */}
-      <section className="bg-surface-container-low rounded-xl p-12 flex gap-12 items-start">
-        <div className="w-48 h-48 rounded-full overflow-hidden shrink-0 grayscale hover:grayscale-0 transition-all duration-700">
-          <img
-            alt="Elena Valdivia"
-            className="w-full h-full object-cover"
-            data-alt="Professional portrait of a middle-aged woman with dark hair and glasses, wearing a minimalist black turtleneck, soft natural lighting, professional studio setting"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEJB-Tk57IsqAWqspY6HNO_lvUla-fuORKbfFL4gfboMc_4YGoNHBiYs5W9escwDnhuIH4Ai7fg47hl3DMlGvOYdT0DFHNQtr9B2H-wPt4_e1F4bdS2G1iSldOcG_j4JRCH6XML7IbNFDKHlstMQCHuy6P2hVxwaJwIv9rCGBtaP7ap4aT6qfq1r65IS-faX4j9lzjbwx2ZgM2aJSAtYIdxHwSCBhFnT1Nn9uMVuJMDMgyuQ8EhXC4yCwlkiUQS-HKZuj8sZ1JJOU"
-          />
-        </div>
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight text-primary mb-4">
-            Elena Valdivia
-          </h2>
-          <p className="text-lg text-on-surface-variant leading-relaxed mb-6">
-            Elena Valdivia is a Pritzker-shortlisted architect and a leading
-            theorist in phenomenological design. Based in Barcelona, her
-            practice focuses on the integration of natural elements with
-            industrial minimalism. Her previous works, including{" "}
-            <em className="italic">The Tectonics of Memory</em>, have been
-            translated into twelve languages and remain essential reading in
-            architectural schools worldwide.
-          </p>
-          <a
-            className="inline-flex items-center gap-2 text-primary font-bold hover:underline"
-            href="#"
-          >
-            View Author Portfolio
-            <span
-              className="material-symbols-outlined"
-              data-icon="arrow_forward"
-            >
-              arrow_forward
-            </span>
-          </a>
-        </div>
-      </section>
+      
     </div>
     {/* Sidebar: Details & Curator's Note */}
 
@@ -171,3 +153,4 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 }
 
 export default Page
+

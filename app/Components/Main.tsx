@@ -65,7 +65,7 @@ const Main = ({ Libros, Carga, children }: MainProps) => {
                     </span>
                     <span className="text-xs font-bold text-on-surface">4.9</span>
                   </div>
-                  <Link href={`/detalles/${encodeURIComponent(title + '/' + author_name + '/' + cover_i)}`} className="text-xs font-bold text-primary flex items-center gap-1 hover:gap-2 transition-all">
+                  <Link href={`/detalles/${encodeURIComponent(title + '@@' + author_name + '@@' + cover_i + '@@' + key)}`} className="text-xs font-bold text-primary flex items-center gap-1 hover:gap-2 transition-all">
                     View Details
                     <span className="material-symbols-outlined text-sm">
                       arrow_forward
