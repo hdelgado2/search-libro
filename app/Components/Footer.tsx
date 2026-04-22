@@ -6,17 +6,29 @@ const Footer = () => {
 
   return (
     <>
-       <footer className="w-full mt-auto bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
-    <div className="flex flex-col md:flex-row justify-between items-center px-6 md:px-16 py-8 md:py-12 w-full max-w-screen-2xl mx-auto text-center md:text-left">
-      <div className="flex flex-col gap-4">
-        <span className="text-xl font-black text-blue-900 dark:text-blue-200">
+  <footer className="w-full h-fullmt-auto bg-slate-950 text-white border-t border-white/5 transition-colors duration-300">
+    <div className="flex flex-col-reverse sm:flex-row justify-between items-center px-6 sm:px-10 lg:px-16 py-10 sm:py-14 w-full max-w-screen-2xl mx-auto text-center sm:text-left gap-10">
+      
+      {/* Decorative element - Appears at the TOP on mobile vertical layout */}
+      <div className="flex items-center gap-6 group">
+        <div className="h-px w-8 bg-blue-500/50 transition-all group-hover:w-12 hidden sm:block"></div>
+        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] group-hover:text-blue-400 transition-colors">
+          Premium Experience
+        </span>
+      </div>
+
+      <div className="flex flex-col gap-3 sm:gap-4 max-w-2xl">
+        <span className="text-xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-blue-400 tracking-tighter">
           Busca tu Libro Favorito
         </span>
-        <p className="font-inter text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 leading-loose md:leading-normal">
-          © {year} Busca tu Libro Favorito. <br className="md:hidden"/> Una Biblioteca Digital Editorial creado por Hendrix Delgado.
+        <p className="font-inter text-[10px] sm:text-xs uppercase tracking-[0.2em] text-slate-500 leading-relaxed sm:leading-loose">
+          © {year} Busca tu Libro Favorito. <br className="sm:hidden"/> 
+          <span className="block sm:inline mt-2 sm:mt-0">
+            Una Biblioteca Digital Editorial creada por Hendrix Delgado.
+          </span>
         </p>
       </div>
-     
+      
     </div>
   </footer>
     </>
