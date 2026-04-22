@@ -4,8 +4,6 @@ import Footer from '@/app/Components/Footer'
 import Link from 'next/link'
 import { ENDPOINT_DETAILS } from '@/app/Endpoint'
 
-
-
 interface BookData {
   description?: string;
   // ... otros campos
